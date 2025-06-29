@@ -7,7 +7,7 @@ import {
   ArrowRight, 
   Zap, 
   Rocket, 
-  Seedling, 
+  Leaf, 
   Clock,
   Target,
   CheckCircle
@@ -24,7 +24,7 @@ const pathOptions = [
     title: 'מתחיל',
     subtitle: 'אני חדש לגמרי בנושא',
     description: 'נתחיל מהבסיס עם מושגי יסוד וחזור על כל מה שצריך',
-    icon: Seedling,
+    icon: Leaf,
     color: 'from-green-400 to-blue-500',
     features: [
       'הסברים מפורטים',
