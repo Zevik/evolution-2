@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+// Animation removed - using regular components
 import { 
   X, 
   ArrowRight, 
@@ -155,16 +155,10 @@ export default function LearningPathSelector({ onSelect, onClose }: LearningPath
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <div
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
     >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0, y: 20 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+      <div
         className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
       >
         {/* Header */}
@@ -209,10 +203,8 @@ export default function LearningPathSelector({ onSelect, onClose }: LearningPath
                   const isSelected = selectedPath === path.id
                   
                   return (
-                    <motion.div
+                    <div
                       key={path.id}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
                       onClick={() => handlePathSelect(path.id as any)}
                       className={`
                         relative p-6 rounded-xl border-2 cursor-pointer transition-all
@@ -255,20 +247,18 @@ export default function LearningPathSelector({ onSelect, onClose }: LearningPath
                           <span>רמה {path.difficulty}</span>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   )
                 })}
               </div>
 
               {assessmentResult && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                <div
                   className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg"
                 >
                   <h3 className="font-semibold text-green-800 mb-2">תוצאת המבחן</h3>
                   <p className="text-green-600">בהתבסס על התשובות שלך, אנו ממליצים על המסלול: <strong>{pathOptions.find(p => p.id === assessmentResult)?.title}</strong></p>
-                </motion.div>
+                </div>
               )}
 
               {/* Confirm Button */}
@@ -295,11 +285,9 @@ export default function LearningPathSelector({ onSelect, onClose }: LearningPath
                 </div>
                 
                 <div className="w-full bg-gray-200 rounded-full h-2 mb-6">
-                  <motion.div
-                    className="bg-blue-500 h-2 rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${((currentQuestion + 1) / assessmentQuestions.length) * 100}%` }}
-                    transition={{ duration: 0.5 }}
+                  <div
+                    className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                    style={{ width: `${((currentQuestion + 1) / assessmentQuestions.length) * 100}%` }}
                   />
                 </div>
               </div>
@@ -309,23 +297,21 @@ export default function LearningPathSelector({ onSelect, onClose }: LearningPath
                 
                 <div className="space-y-3">
                   {assessmentQuestions[currentQuestion].options.map((option, index) => (
-                    <motion.button
+                    <button
                       key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
                       onClick={() => handleAnswerSelect(option.points)}
                       className="w-full p-4 text-right bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-lg transition-all"
                     >
                       {option.text}
-                    </motion.button>
+                    </button>
                   ))}
                 </div>
               </div>
             </div>
           )}
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 } 
+

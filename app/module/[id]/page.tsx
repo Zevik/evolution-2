@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+// Animation removed - using regular components
 import { 
   ArrowRight, 
   ArrowLeft, 
@@ -181,23 +181,17 @@ export default function ModulePage({ params }: ModulePageProps) {
             {sectionTitles[sections[currentSection] as keyof typeof sectionTitles]}
           </h1>
           <div className="w-full bg-gray-200 rounded-full h-2 mb-6">
-            <motion.div
-              className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: `${((currentSection + 1) / sections.length) * 100}%` }}
-              transition={{ duration: 0.5 }}
+            <div
+              className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-500"
+              style={{ width: `${((currentSection + 1) / sections.length) * 100}%` }}
             />
           </div>
         </div>
 
         {/* Section Content */}
-        <motion.div
+        <div
           key={currentSection}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.3 }}
-          className="learning-card"
+          className="learning-card transition-all duration-300"
         >
           {sections[currentSection] === 'introduction' && (
             <div 
@@ -317,7 +311,7 @@ export default function ModulePage({ params }: ModulePageProps) {
               )}
             </div>
           )}
-        </motion.div>
+        </div>
 
         {/* Navigation Buttons */}
         {!quizCompleted && (

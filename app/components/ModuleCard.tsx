@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+// Animation removed - using regular components
 import { 
   Clock, 
   Target, 
@@ -45,9 +45,7 @@ export default function ModuleCard({ module, onClick, completed, total }: Module
   const difficulty = difficultyConfig[module.difficulty]
 
   return (
-    <motion.div
-      whileHover={{ scale: module.isUnlocked ? 1.02 : 1 }}
-      whileTap={{ scale: module.isUnlocked ? 0.98 : 1 }}
+    <div
       onClick={module.isUnlocked ? onClick : undefined}
       className={`
         learning-card relative overflow-hidden transition-all duration-300
@@ -59,15 +57,13 @@ export default function ModuleCard({ module, onClick, completed, total }: Module
     >
       {/* Completion Badge */}
       {isCompleted && (
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
+        <div
           className="absolute top-3 left-3 z-10"
         >
           <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
             <CheckCircle className="w-5 h-5 text-white" />
           </div>
-        </motion.div>
+        </div>
       )}
 
       {/* Lock Icon for Locked Modules */}
@@ -106,15 +102,13 @@ export default function ModuleCard({ module, onClick, completed, total }: Module
               <span className="font-medium">{completed}/{total}</span>
             </div>
             <div className="progress-bar h-2">
-              <motion.div
+              <div
                 className={`h-full rounded-full transition-all duration-500 ${
                   isCompleted 
                     ? 'bg-gradient-to-r from-green-500 to-green-600' 
                     : 'bg-gradient-to-r from-blue-500 to-blue-600'
                 }`}
-                initial={{ width: 0 }}
-                animate={{ width: `${progressPercentage}%` }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
+                style={{ width: `${progressPercentage}%` }}
               />
             </div>
             <div className="text-xs text-gray-500">
@@ -153,9 +147,7 @@ export default function ModuleCard({ module, onClick, completed, total }: Module
         {/* Action Button */}
         <div className="pt-2">
           {module.isUnlocked ? (
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+            <button
               className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-medium transition-all ${
                 isCompleted
                   ? 'bg-green-100 text-green-700 hover:bg-green-200'
@@ -180,7 +172,7 @@ export default function ModuleCard({ module, onClick, completed, total }: Module
                   התחל ללמוד
                 </>
               )}
-            </motion.button>
+            </button>
           ) : (
             <button
               disabled
@@ -194,24 +186,22 @@ export default function ModuleCard({ module, onClick, completed, total }: Module
 
         {/* Achievement Indicator */}
         {isCompleted && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
             className="flex items-center justify-center gap-2 text-yellow-600 text-sm font-medium"
           >
             <Star className="w-4 h-4 fill-current" />
             מודול הושלם בהצלחה!
-          </motion.div>
+          </div>
         )}
       </div>
 
       {/* Hover Effect Overlay */}
       {module.isUnlocked && (
-        <motion.div
+        <div
           className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 transition-opacity duration-300"
-          whileHover={{ opacity: 1 }}
         />
       )}
-    </motion.div>
+    </div>
   )
 } 
+

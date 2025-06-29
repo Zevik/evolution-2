@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+// Animation removed - using regular components
 import { 
   Sparkles, 
   BookOpen, 
@@ -98,16 +98,10 @@ export default function WelcomeModal({ onComplete }: WelcomeModalProps) {
   const Icon = currentStepData.icon
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <div
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
     >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
+      <div
         className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
       >
         {/* Header */}
@@ -132,42 +126,33 @@ export default function WelcomeModal({ onComplete }: WelcomeModalProps) {
           
           {/* Progress Bar */}
           <div className="w-full bg-white bg-opacity-20 rounded-full h-2">
-            <motion.div
-              className="bg-white h-2 rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: `${((currentStep + 1) / welcomeSteps.length) * 100}%` }}
-              transition={{ duration: 0.5 }}
+            <div
+              className="bg-white h-2 rounded-full transition-all duration-500"
+              style={{ width: `${((currentStep + 1) / welcomeSteps.length) * 100}%` }}
             />
           </div>
         </div>
 
         {/* Content */}
         <div className="p-6">
-          <AnimatePresence mode="wait">
-            <motion.div
+          <>
+            <div
               key={currentStep}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
               className="space-y-4"
             >
               {currentStepData.content.map((item, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
                   className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
                 >
                   <div className={`w-8 h-8 bg-gradient-to-r ${currentStepData.color} rounded-full flex items-center justify-center text-white text-sm font-semibold`}>
                     {index + 1}
                   </div>
                   <span className="text-gray-700">{item}</span>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          </>
         </div>
 
         {/* Footer */}
@@ -210,7 +195,8 @@ export default function WelcomeModal({ onComplete }: WelcomeModalProps) {
             </div>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 } 
+

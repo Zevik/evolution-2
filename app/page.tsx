@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+// Animation removed - using regular components
 import { 
   BookOpen, 
   Target, 
@@ -168,9 +168,7 @@ export default function HomePage() {
       <div className="relative z-10">
         {/* Header */}
         <header className="p-6">
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
             className="max-w-7xl mx-auto"
           >
             <div className="flex items-center justify-between">
@@ -198,18 +196,14 @@ export default function HomePage() {
                 </div>
               )}
             </div>
-          </motion.div>
+          </div>
         </header>
 
         {/* Main Content */}
         <main className="max-w-7xl mx-auto px-6 pb-12">
           {!currentPath ? (
             <div className="text-center py-20">
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
+              <div>
                 <Sparkles className="w-16 h-16 mx-auto text-blue-500 mb-6" />
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">ברוכים הבאים!</h2>
                 <p className="text-lg text-gray-600 mb-8">בחר את מסלול הלמידה המתאים לך כדי להתחיל</p>
@@ -219,7 +213,7 @@ export default function HomePage() {
                 >
                   התחל ללמוד <Play className="w-5 h-5 mr-2" />
                 </button>
-              </motion.div>
+              </div>
             </div>
           ) : (
             <div className="space-y-8">
@@ -234,14 +228,10 @@ export default function HomePage() {
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <AnimatePresence mode="popLayout">
+                  <>
                     {getModulesForPath().map((module, index) => (
-                      <motion.div
+                      <div
                         key={module.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ delay: index * 0.1 }}
                       >
                         <ModuleCard
                           module={module}
@@ -249,9 +239,9 @@ export default function HomePage() {
                           completed={userProgress.completedLessons.filter(id => id.startsWith(`${module.id}-`)).length}
                           total={module.lessons.length || 2}
                         />
-                      </motion.div>
+                      </div>
                     ))}
-                  </AnimatePresence>
+                  </>
                 </div>
               </section>
 
@@ -267,35 +257,32 @@ export default function HomePage() {
               {/* Quick Actions */}
               <section className="mt-12">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
+                  <div
                     className="learning-card text-center"
                   >
                     <Target className="w-12 h-12 text-blue-500 mx-auto mb-4" />
                     <h3 className="text-lg font-semibold mb-2">תרגול יומי</h3>
                     <p className="text-gray-600 mb-4">פתור אתגרים קצרים לחיזוק הידע</p>
                     <button className="btn-secondary w-full">התחל תרגול</button>
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
+                  <div
                     className="learning-card text-center"
                   >
                     <Gamepad2 className="w-12 h-12 text-purple-500 mx-auto mb-4" />
                     <h3 className="text-lg font-semibold mb-2">משחקי למידה</h3>
                     <p className="text-gray-600 mb-4">למד דרך משחקים אינטראקטיביים</p>
                     <button className="btn-secondary w-full">שחק עכשיו</button>
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
+                  <div
                     className="learning-card text-center"
                   >
                     <Users className="w-12 h-12 text-green-500 mx-auto mb-4" />
                     <h3 className="text-lg font-semibold mb-2">קהילת למידה</h3>
                     <p className="text-gray-600 mb-4">התחבר ללומדים אחרים</p>
                     <button className="btn-secondary w-full">הצטרף לקהילה</button>
-                  </motion.div>
+                  </div>
                 </div>
               </section>
             </div>
@@ -304,7 +291,7 @@ export default function HomePage() {
       </div>
 
       {/* Modals */}
-      <AnimatePresence>
+      <>
         {showWelcome && (
           <WelcomeModal onComplete={handleWelcomeComplete} />
         )}
@@ -315,7 +302,8 @@ export default function HomePage() {
             onClose={() => setShowPathSelector(false)}
           />
         )}
-      </AnimatePresence>
+      </>
     </div>
   )
 } 
+

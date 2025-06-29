@@ -1,7 +1,7 @@
 'use client'
 
 import React, { createContext, useContext, useState, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+// Animation removed - using regular components
 import { CheckCircle, AlertCircle, XCircle, Info, X } from 'lucide-react'
 
 interface Toast {
@@ -75,16 +75,12 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     <ToastContext.Provider value={{ showToast, hideToast }}>
       {children}
       <div className="fixed top-4 left-4 z-50 max-w-md w-full space-y-2">
-        <AnimatePresence>
+        <>
           {toasts.map((toast) => {
             const Icon = toastIcons[toast.type]
             return (
-              <motion.div
+              <div
                 key={toast.id}
-                initial={{ opacity: 0, x: -100, scale: 0.9 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: -100, scale: 0.9 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
                 className={`rounded-lg border p-4 shadow-lg backdrop-blur-sm ${toastColors[toast.type]}`}
               >
                 <div className="flex items-start gap-3">
@@ -110,11 +106,12 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
                     <X className="h-4 w-4" />
                   </button>
                 </div>
-              </motion.div>
+              </div>
             )
           })}
-        </AnimatePresence>
+        </>
       </div>
     </ToastContext.Provider>
   )
 } 
+

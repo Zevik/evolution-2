@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+// Animation removed - using regular components
 import { Trophy, Lock, Calendar, Star, Medal, Award, Target, Flame, Zap, CheckCircle } from 'lucide-react'
 import { useLearningStore } from '../store/learningStore'
 
@@ -30,7 +30,7 @@ export default function AchievementsList() {
         {achievements.map((achievement) => {
           const isUnlocked = unlockedAchievements.includes(achievement.id)
           return (
-            <motion.div
+            <div
               key={achievement.id}
               className={`p-4 rounded-xl border-2 ${
                 isUnlocked ? 'bg-white border-yellow-300' : 'bg-gray-50 border-gray-200 opacity-70'
@@ -47,10 +47,11 @@ export default function AchievementsList() {
                   <p className="text-sm text-gray-600">{achievement.description}</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           )
         })}
       </div>
     </div>
   )
 } 
+

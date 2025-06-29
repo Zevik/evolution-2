@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+// Animation removed - using regular components
 import { 
   User, 
   Trophy, 
@@ -87,17 +87,14 @@ export default function ProgressDashboard() {
         {stats.map((stat, index) => {
           const Icon = stat.icon
           return (
-            <motion.div
+            <div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
               className={`${stat.bgColor} ${stat.borderColor} border rounded-xl p-4 text-center`}
             >
               <Icon className={`w-8 h-8 ${stat.color} mx-auto mb-2`} />
               <div className="text-2xl font-bold text-gray-800">{stat.value}</div>
               <div className="text-sm text-gray-600">{stat.label}</div>
-            </motion.div>
+            </div>
           )
         })}
       </div>
@@ -118,14 +115,12 @@ export default function ProgressDashboard() {
             </div>
             
             <div className="progress-bar">
-              <motion.div
-                className="progress-fill"
-                initial={{ width: 0 }}
-                animate={{ width: `${Math.min(progressToNextLevel, 100)}%` }}
-                transition={{ duration: 1, ease: 'easeOut' }}
+              <div
+                className="progress-fill transition-all duration-500"
+                style={{ width: `${Math.min(progressToNextLevel, 100)}%` }}
               >
                 <div className="absolute inset-0 bg-white bg-opacity-20 animate-pulse"></div>
-              </motion.div>
+              </div>
             </div>
             
             <div className="flex justify-between text-xs text-gray-500">
@@ -205,3 +200,4 @@ export default function ProgressDashboard() {
     </div>
   )
 } 
+
