@@ -115,8 +115,8 @@ export default function HomePage() {
   }
 
   const handleModuleClick = (moduleId: number) => {
-    const module = demoModules.find(m => m.id === moduleId)
-    if (!module?.isUnlocked) return
+    const learningModule = demoModules.find(m => m.id === moduleId)
+    if (!learningModule?.isUnlocked) return
     
     playClick()
     setSelectedModule(moduleId)
