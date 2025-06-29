@@ -80,6 +80,7 @@ interface LearningState {
   // Actions
   updateProgress: (moduleId: number, lessonId: string, score?: number) => void
   completeLesson: (moduleId: number, lessonId: string, score: number, timeSpent: number) => void
+  addXP: (points: number) => void
   unlockAchievement: (achievementId: string) => void
   updateStreak: () => void
   setCurrentPath: (path: 'beginner' | 'intermediate' | 'advanced') => void
@@ -180,6 +181,21 @@ export const useLearningStore = create<LearningState>()(
               ...state.userProgress,
               completedLessons: newCompletedLessons,
               totalScore: state.userProgress.totalScore + score,
+              xp: newXP,
+              level: newLevel
+            }
+          }
+        })
+      },
+
+      addXP: (points: number) => {
+        set((state) => {
+          const newXP = state.userProgress.xp + points
+          const newLevel = calculateLevel(newXP)
+          
+          return {
+            userProgress: {
+              ...state.userProgress,
               xp: newXP,
               level: newLevel
             }

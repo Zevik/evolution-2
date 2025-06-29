@@ -115,7 +115,7 @@ export default function ModulePage({ params }: ModulePageProps) {
     
     if (percentage >= 70) {
       playSuccess()
-      completeLesson(`module-${moduleId}-lesson-1`)
+      completeLesson(moduleId, `module-${moduleId}-lesson-1`, percentage, 0)
       addXP(100)
       trackEvent('lesson_completed', { moduleId, score: percentage })
     } else {
