@@ -85,8 +85,7 @@ export default function HomePage() {
   const { 
     userProgress, 
     currentPath, 
-    setCurrentPath,
-    completedLessons 
+    setCurrentPath
   } = useLearningStore()
   
   const { trackEvent } = useProgress()
@@ -247,7 +246,7 @@ export default function HomePage() {
                         <ModuleCard
                           module={module}
                           onClick={() => handleModuleClick(module.id)}
-                          completed={completedLessons.filter(id => id.startsWith(`${module.id}-`)).length}
+                          completed={userProgress.completedLessons.filter(id => id.startsWith(`${module.id}-`)).length}
                           total={module.lessons.length || 2}
                         />
                       </motion.div>
